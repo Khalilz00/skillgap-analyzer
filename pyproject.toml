@@ -13,13 +13,14 @@ dependencies = []
 # ─── Dépendances de développement (uv) ───────────────────────────────────────
 # Séparées des deps runtime pour ne pas les embarquer en prod.
 # Gérées par uv dans le venv local, non publiées avec le package.
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev=[
   "pytest>=7.4",          # framework de tests
   "pytest-cov>=4.1",      # rapport de couverture de code
   "pytest-asyncio>=0.21", # support des tests async (utile pour scraping/IO)
   "ruff>=0.1",            # linter + formatter ultra-rapide (remplace flake8/isort/black)
   "mypy>=1.5",            # vérification statique des types
+  "pre-commit>=4.5.1",
 ]
 
 # ─── Ruff : linter/formatter ──────────────────────────────────────────────────
