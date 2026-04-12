@@ -1,0 +1,55 @@
+# ─── Métadonnées du projet ───────────────────────────────────────────────────
+[project]
+name = "skillgap-analyzer"
+version = "0.1.0"
+description = "Data jobs market skill gap analyzer"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+
+
+
+# ─── Dépendances de développement (uv) ───────────────────────────────────────
+# Séparées des deps runtime pour ne pas les embarquer en prod.
+# Gérées par uv dans le venv local, non publiées avec le package.
+[tool.uv]
+dev-dependencies = [
+  "pytest>=7.4",          # framework de tests
+  "pytest-cov>=4.1",      # rapport de couverture de code
+  "pytest-asyncio>=0.21", # support des tests async (utile pour scraping/IO)
+  "ruff>=0.1",            # linter + formatter ultra-rapide (remplace flake8/isort/black)
+  "mypy>=1.5",            # vérification statique des types
+]
+
+# ─── Ruff : linter/formatter ──────────────────────────────────────────────────
+# Remplace flake8, isort et une partie de pylint en un seul outil.
+[tool.ruff]
+line-length = 100      # longueur max des lignes (plus permissif que le 88 de black)
+target-version = "py312"
+
+# Règles activées :
+#   E/W  → style PEP8 (erreurs et warnings)
+#   F    → pyflakes (variables inutilisées, imports manquants…)
+#   I    → isort (ordre des imports)
+#   UP   → pyupgrade (modernisation syntaxe Python)
+#   B    → bugbear (patterns risqués ou sous-optimaux)
+#   SIM  → simplification de code
+#   PTH  → préférer pathlib à os.path
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "PTH"]
+
+# ─── Mypy : vérification statique des types ───────────────────────────────────
+# strict = true active toutes les vérifications (no implicit Any, no untyped defs…)
+# Garantit une base de code typée de bout en bout.
+[tool.mypy]
+strict = true
+python_version = "3.12"
+
+# ─── Pytest ───────────────────────────────────────────────────────────────────
+# testpaths : où pytest cherche les tests (évite de scanner tout le repo)
+# addopts   : options appliquées à chaque `pytest` — ici couverture automatique
+#             avec affichage des lignes non couvertes dans le terminal
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=src/skillgap --cov-report=term-missing"
