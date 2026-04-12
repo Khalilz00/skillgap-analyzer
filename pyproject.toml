@@ -13,13 +13,14 @@ dependencies = []
 # ─── Dépendances de développement (uv) ───────────────────────────────────────
 # Séparées des deps runtime pour ne pas les embarquer en prod.
 # Gérées par uv dans le venv local, non publiées avec le package.
-[tool.uv]
-dev-dependencies = [
-  "pytest>=7.4",          # framework de tests
-  "pytest-cov>=4.1",      # rapport de couverture de code
-  "pytest-asyncio>=0.21", # support des tests async (utile pour scraping/IO)
-  "ruff>=0.1",            # linter + formatter ultra-rapide (remplace flake8/isort/black)
-  "mypy>=1.5",            # vérification statique des types
+[dependency-groups]
+dev=[
+  "pytest>=7.4",         
+  "pytest-cov>=4.1",      
+  "pytest-asyncio>=0.21", 
+  "ruff>=0.1",            
+  "mypy>=1.5",            
+  "pre-commit>=4.5.1",
 ]
 
 # ─── Ruff : linter/formatter ──────────────────────────────────────────────────
@@ -39,6 +40,7 @@ target-version = "py312"
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "SIM", "PTH"]
 
+
 # ─── Mypy : vérification statique des types ───────────────────────────────────
 # strict = true active toutes les vérifications (no implicit Any, no untyped defs…)
 # Garantit une base de code typée de bout en bout.
@@ -53,3 +55,10 @@ python_version = "3.12"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--cov=src/skillgap --cov-report=term-missing"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/skillgap"]
