@@ -211,6 +211,8 @@ __marimo__/
 *.tfstate
 *.tfstate.*
 .terraform/
+terraform.tfvars
+
 
 # Secrets
 credentials.json
