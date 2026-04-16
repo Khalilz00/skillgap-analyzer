@@ -1,6 +1,7 @@
 import json
 import time
 from datetime import datetime
+from typing import Any
 
 from google.cloud import storage
 from google.cloud.exceptions import GoogleCloudError
@@ -15,7 +16,7 @@ class GCSBronzeWriter:
         self.client = storage.Client()
         self.bucket = self.client.bucket(bucket_name)
 
-    def write(self, data: list[dict], source: str):
+    def write(self, data: list[dict[str, Any]], source: str) -> None:
         json_data = json.dumps(data) if not isinstance(data, str) else data
 
         date = datetime.now().strftime("%Y-%m-%d")
