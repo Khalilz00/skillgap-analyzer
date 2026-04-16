@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 from typing import Any
 
-from google.cloud import storage
+from google.cloud import storage  # type: ignore[attr-defined]
 from google.cloud.exceptions import GoogleCloudError
 
 
