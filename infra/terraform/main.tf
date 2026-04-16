@@ -14,3 +14,7 @@ provider "google" {
   region      = var.region
   credentials = file("~/.gcp/skillgap-493211-191f7f049595.json")
 }
+
+resource "google_project_service" "artifact_registry" {
+  service = "artifactregistry.googleapis.com"
+}
