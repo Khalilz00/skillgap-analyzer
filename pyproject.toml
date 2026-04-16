@@ -6,6 +6,7 @@ description = "Data jobs market skill gap analyzer"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "google-cloud-storage>=3.10.1",
     "httpx>=0.28.1",
 ]
 
