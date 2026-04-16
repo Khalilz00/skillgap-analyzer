@@ -12,7 +12,9 @@ class FranceTravailClient:
         self.base_url = base_url or "https://api.francetravail.io/partenaire/offresdemploi/v2"
 
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
-    def search_jobs(self, query: str, range_start: int = 0, range_end: int = 10) -> list[dict[str, Any]]:
+    def search_jobs(
+        self, query: str, range_start: int = 0, range_end: int = 10
+    ) -> list[dict[str, Any]]:
         headers = self._build_headers()
         params = {
             "range": f"{range_start}-{range_end}",
