@@ -1,5 +1,6 @@
 import os
 from datetime import UTC, datetime, timedelta
+from typing import Any
 
 from skillgap.config import BASE_URL, SCOPE, TOKEN_URL
 from skillgap.ingestion.auth import FranceTravailAuth
@@ -9,7 +10,7 @@ from skillgap.storage.gcs import GCSBronzeWriter
 
 # function to fetch job offers from France Travail API, date range is optional,
 # if not provided, it will fetch all offers
-def fetch_job_offers(client, query, start_date=None, end_date=None):
+def fetch_job_offers(client, query, start_date=None, end_date=None) -> list[dict[str, Any]]:
     total_objects, results = client.search_jobs(
         query, 0, 149, start_date=start_date, end_date=end_date
     )
