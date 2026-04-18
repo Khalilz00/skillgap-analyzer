@@ -22,17 +22,13 @@ class FranceTravailClient:
     ) -> tuple[int, list[dict[str, Any]]]:
         headers = self._build_headers()
         if not start_date and not end_date:
-            params = {
+            params: dict[str, str] = {
                 "range": f"{range_start}-{range_end}",
                 "motsCles": query,
             }
-        else:
-            params = {
-                "range": f"{range_start}-{range_end}",
-                "motsCles": query,
-                "minCreationDate": start_date,
-                "maxCreationDate": end_date,
-            }
+        if start_date is not None and end_date is not None:
+            params["minCreationDate"] = start_date
+            params["maxCreationDate"] = end_date
         response = httpx.get(
             f"{self.base_url}/offres/search", headers=headers, params=params, timeout=10
         )
