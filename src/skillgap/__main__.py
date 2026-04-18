@@ -10,7 +10,12 @@ from skillgap.storage.gcs import GCSBronzeWriter
 
 # function to fetch job offers from France Travail API, date range is optional,
 # if not provided, it will fetch all offers
-def fetch_job_offers(client, query, start_date=None, end_date=None) -> list[dict[str, Any]]:
+def fetch_job_offers(
+    client: FranceTravailClient,
+    query: str,
+    start_date: str | None = None,
+    end_date: str | None = None,
+) -> list[dict[str, Any]]:
     total_objects, results = client.search_jobs(
         query, 0, 149, start_date=start_date, end_date=end_date
     )
@@ -45,18 +50,20 @@ def main() -> None:
 
     # print mode
     print(f"Ingestion mode: {ingestion_mode}")
+
     if ingestion_mode == "backfill":
         results = fetch_job_offers(client, "data")
-
-    # fetch today's date in ISO format
-    today = datetime.now(UTC).strftime("%Y-%m-%d")
-    yesterday = (datetime.now(UTC) - timedelta(days=1)).strftime("%Y-%m-%d")
-    # format to ISO 8601 format with time
-    today_iso = f"{today}T00:00:00Z"
-    yesterday_iso = f"{yesterday}T00:00:00Z"
-
-    if ingestion_mode == "incremental":
+    elif ingestion_mode == "incremental":
+        # calcul des dates ici, juste quand on en a besoin
+        today = datetime.now(UTC).strftime("%Y-%m-%d")
+        yesterday = (datetime.now(UTC) - timedelta(days=1)).strftime("%Y-%m-%d")
+        today_iso = f"{today}T00:00:00Z"
+        yesterday_iso = f"{yesterday}T00:00:00Z"
         results = fetch_job_offers(client, "data", start_date=yesterday_iso, end_date=today_iso)
+    else:
+        raise ValueError(
+            f"Unknown INGESTION_MODE: {ingestion_mode}. Expected 'backfill' or 'incremental'."
+        )
 
     writer = GCSBronzeWriter(bucket_name)
     writer.write(results, "france_travail")
