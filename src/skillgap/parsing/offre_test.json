@@ -1,0 +1,112 @@
+{
+    "id": "206ZXRZ",
+    "intitule": "Ingénieur / Ingénieure data junior (H/F)",
+    "description": "Fondé en 1937 à Béziers, le Groupe Gazechim est un groupe familial et indépendant, présent dans plus de 20 pays avec 40 sociétés et près de 800 collaborateurs. Nous sommes spécialisés dans la distribution de gaz liquéfiés, de fluides frigorigènes et de matériaux composites, au service de secteurs variés : aéronautique, automobile, nautisme, traitement de l'eau, énergies renouvelables.\n\nAujourd'hui, nous cherchons un(e) Ingénieur data Junior F/H passionné(e) pour rejoindre notre Direction Plateforme data au siège de Béziers et contribuer à l'innovation data du Groupe. \n \nVos missions :\nRattaché(e) au Directeur plateforme data et IA, vous serez responsable de la création et de la maintenance des pipelines, de l'industrialisation des traitements et de la fiabilité de la donnée au sein de nos plateformes analytiques.\nVous réaliserez les extractions et les rapports d'analyses et contribuerez à la formation des utilisateurs.\n\nVos principales missions seront :\n- - Concevoir, développer et maintenir les pipelines d'intégration et de transformation de données (ETL/ELT) ;\n- Participer à la mise en place et à l'évolution de l'architecture Data Microsoft (SQL Server, Azure, Power BI, Fabric) ;\n- Garantir la qualité, la sécurité et la disponibilité des données ;\n- Automatiser les traitements et contribuer à l'industrialisation des processus DataOps ;\n- Réaliser les applications et les rapports PowerBI ;\n- Collaborer avec les équipes métiers pour comprendre les besoins et traduire les exigences en solutions techniques concrètes ;\n- Contribuer aux projets de valorisation de la donnée via les outils d'IA générative et les nouveaux services Microsoft Fabric ;\n- Participer à la documentation, au support et à la formation des utilisateurs techniques et métier.\n\nProfil recherché :\nDe formation Bac+3 à Bac+5 en informatique ou équivalent, vous justifiez d'une expérience réussie (minimum 2 à 3 ans) en tant que Data Engineer, Développeur BI ou Développeur SQL dans un environnement Microsoft.\n\nCompétences techniques attendues :\n- Solide maîtrise de SQL Server, SSIS, Power BI, Azure Data Services et idéalement Fabric ;\n- Expérience dans le développement de flux ETL, l'automatisation et la gestion des données ;\n- Compétences en .NET, Python ou VBScript appréciées ;\n- Connaissance de Navision / Business Central serait un plus.\n\nQualités recherchées :\n- Opérationnel, rigoureux et orienté solution : vous aimez produire et voir le résultat concret de votre travail ;\n- Esprit analytique, autonomie, curiosité pour les nouvelles technologies ;\n- Bon relationnel et capacité à travailler en équipe ;\n- Maîtrise de l'anglais professionnel.",
+    "dateCreation": "2026-04-16T13:06:17.142Z",
+    "dateActualisation": "2026-04-16T13:06:17.562Z",
+    "lieuTravail": {
+        "libelle": "34 - BEZIERS",
+        "latitude": 43.335278,
+        "longitude": 3.252502,
+        "codePostal": "34500",
+        "commune": "34032"
+    },
+    "romeCode": "M1853",
+    "romeLibelle": "Chef / Cheffe de projet étude et développement informatique",
+    "appellationlibelle": "Chargé / Chargée de projet Data",
+    "entreprise": {
+        "nom": "GROUPE GAZECHIM SERVICES",
+        "entrepriseAdaptee": false
+    },
+    "typeContrat": "CDI",
+    "typeContratLibelle": "CDI",
+    "natureContrat": "Contrat travail",
+    "experienceExige": "E",
+    "experienceLibelle": "3 An(s)",
+    "formations": [
+        {
+            "codeFormation": "31032",
+            "domaineLibelle": "Système exploitation informatique",
+            "niveauLibelle": "Bac+5 et plus ou équivalents",
+            "exigence": "S"
+        }
+    ],
+    "langues": [
+        {
+            "libelle": "Anglais",
+            "exigence": "S"
+        }
+    ],
+    "competences": [
+        {
+            "code": "300366",
+            "libelle": "Recueillir et analyser les besoins client",
+            "exigence": "E"
+        }
+    ],
+    "salaire": {
+        "commentaire": "Salaire sur 13 mois",
+        "complement1": "Intéressement / participation",
+        "complement2": "Ordinateur portable",
+        "listeComplements": [
+            {
+                "code": "10",
+                "libelle": "Intéressement / participation"
+            },
+            {
+                "code": "4",
+                "libelle": "Ordinateur portable"
+            },
+            {
+                "code": "6",
+                "libelle": "Titres restaurant / Prime de panier"
+            },
+            {
+                "code": "7",
+                "libelle": "Complémentaire santé"
+            }
+        ]
+    },
+    "dureeTravailLibelle": "35H/semaine\nTravail en journée",
+    "dureeTravailLibelleConverti": "Temps plein",
+    "alternance": false,
+    "contact": {
+        "nom": "GROUPE GAZECHIM SERVICES - Mme Elisa MENRAS",
+        "coordonnees1": "Pour postuler, utiliser le lien suivant : https://candidat.francetravail.fr/offres/recherche/detail/206ZXRZ",
+        "courriel": "Pour postuler, utiliser le lien suivant : https://candidat.francetravail.fr/offres/recherche/detail/206ZXRZ"
+    },
+    "agence": {},
+    "nombrePostes": 1,
+    "qualificationCode": "8",
+    "qualificationLibelle": "Agent de maîtrise",
+    "codeNAF": "70.22Z",
+    "secteurActivite": "70",
+    "secteurActiviteLibelle": "Conseil pour les affaires et autres conseils de gestion",
+    "qualitesProfessionnelles": [
+        {
+            "libelle": "Faire preuve de curiosité, d'ouverture d'esprit",
+            "description": "Capacité à aller chercher au-delà de ce qui est donné à voir, à s'ouvrir sur la nouveauté et à investiguer pour comprendre et agir de façon appropriée."
+        },
+        {
+            "libelle": "Faire preuve de rigueur et de précision",
+            "description": "Capacité à réaliser des tâches en suivant avec exactitude les règles, les procédures, les instructions qui ont été fournies, sans réaliser d'erreur et à transmettre clairement des informations. Se montrer ponctuel et respectueux des règles de savoir-vivre usuelles."
+        },
+        {
+            "libelle": "Organiser son travail selon les priorités et les objectifs",
+            "description": "Capacité à planifier, prioriser, anticiper des actions, en tenant compte des moyens, des ressources, des objectifs et du calendrier pour les réaliser."
+        }
+    ],
+    "trancheEffectifEtab": "50 à 99 salariés",
+    "origineOffre": {
+        "origine": "1",
+        "urlOrigine": "https://candidat.francetravail.fr/offres/recherche/detail/206ZXRZ"
+    },
+    "offresManqueCandidats": false,
+    "contexteTravail": {
+        "horaires": [
+            "35H/semaine\nTravail en journée"
+        ]
+    },
+    "entrepriseAdaptee": false,
+    "employeurHandiEngage": false
+}
