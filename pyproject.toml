@@ -28,12 +28,13 @@ dependencies = [
 # Gérées par uv dans le venv local, non publiées avec le package.
 [dependency-groups]
 dev=[
-  "pytest>=7.4",         
-  "pytest-cov>=4.1",      
-  "pytest-asyncio>=0.21", 
-  "ruff>=0.1",            
-  "mypy>=1.5",            
+  "pytest>=7.4",
+  "pytest-cov>=4.1",
+  "pytest-asyncio>=0.21",
+  "ruff>=0.1",
+  "mypy>=1.5",
   "pre-commit>=4.5.1",
+  "pandas-stubs>=3.0.0.260204",
 ]
 
 # ─── Ruff : linter/formatter ──────────────────────────────────────────────────

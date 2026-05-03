@@ -25,8 +25,9 @@ class FranceTravailClient:
         params: dict[str, str] = {
             "range": f"{range_start}-{range_end}",
             "motsCles": query,
-            "grandDomaine": grand_domaine,
         }
+        if grand_domaine is not None:
+            params["grandDomaine"] = grand_domaine
         if start_date is not None and end_date is not None:
             params["minCreationDate"] = start_date
             params["maxCreationDate"] = end_date

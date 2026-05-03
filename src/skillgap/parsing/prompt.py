@@ -1,3 +1,5 @@
+from typing import Any
+
 PROMPT_TEMPLATE = """Tu es un extracteur de technologies pour des offres d'emploi.
 TÂCHE : lis la description de l'offre d'emploi ci-dessous et renvoie la liste de toutes les technologies, outils, langages, frameworks, plateformes et méthodologies mentionnés.
 RÈGLES :
@@ -27,11 +29,14 @@ Réponse :
 """  # noqa: E501
 
 
-def _extract_offer_description(offer: dict) -> str:
-    return offer.get("description", "")
+def _extract_offer_description(offer: dict[str, Any]) -> str:
+    description = offer.get("description", "")
+    if not isinstance(description, str):
+        return ""
+    return description
 
 
-def build_prompt(offer: dict) -> str:
+def build_prompt(offer: dict[str, Any]) -> str:
     """Construit le prompt complet à envoyer au LLM."""
     text = _extract_offer_description(offer)
     return PROMPT_TEMPLATE.format(offer_text=text)

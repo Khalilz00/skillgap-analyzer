@@ -1,4 +1,7 @@
+from typing import cast
+
 from llama_cpp import Llama
+from llama_cpp.llama_types import CreateChatCompletionResponse
 
 
 class LLMClient:
@@ -23,10 +26,13 @@ class LLMClient:
             raise ValueError("Le LLM n'a pas renvoyé un JSON valide.")
 
     def generate(self, prompt: str, max_new_tokens: int = 300) -> str:
-        response = self.llama.create_chat_completion(
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=max_new_tokens,
-            temperature=0.0,
+        response = cast(
+            CreateChatCompletionResponse,
+            self.llama.create_chat_completion(
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=max_new_tokens,
+                temperature=0.0,
+            ),
         )
 
         output = response["choices"][0]["message"]["content"]

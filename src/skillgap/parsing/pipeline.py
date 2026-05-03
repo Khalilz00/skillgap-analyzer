@@ -3,6 +3,7 @@
 # 3. save the parsed offers in the silver bucket GCS
 
 from datetime import date, datetime
+from typing import Any
 
 from skillgap.parsing.llm import LLMClient
 from skillgap.parsing.prompt import build_prompt
@@ -13,7 +14,7 @@ class ParsingPipeline:
     def __init__(self, llm_client: LLMClient):
         self.llm_client = llm_client
 
-    def parse_offer(self, offer: dict) -> ParsedOffer:
+    def parse_offer(self, offer: dict[str, Any]) -> ParsedOffer:
         prompt = build_prompt(offer)
 
         llm_response = self.llm_client.generate(prompt)
@@ -34,5 +35,5 @@ class ParsingPipeline:
         )
         return parsed_offer
 
-    def parse_offers(self, offers: list[dict]) -> list[ParsedOffer]:
+    def parse_offers(self, offers: list[dict[str, Any]]) -> list[ParsedOffer]:
         return [self.parse_offer(offer) for offer in offers]
