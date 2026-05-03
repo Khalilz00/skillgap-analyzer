@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: fct_tech_mentions_daily
+    description: "Nombre d'offres mentionnant chaque techno par jour"
+    columns:
+      - name: scrape_date
+        data_tests:
+          - not_null
+      - name: tech
+        data_tests:
+          - not_null
+      - name: mention_count
+        data_tests:
+          - not_null
+
+  - name: dim_tech
+    description: "Dimension technos avec premières/dernières mentions et total"
+    columns:
+      - name: tech
+        data_tests:
+          - not_null
+          - unique

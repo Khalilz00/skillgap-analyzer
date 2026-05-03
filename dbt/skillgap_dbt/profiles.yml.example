@@ -1,0 +1,12 @@
+skillgap_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: <YOUR_GCP_PROJECT_ID>
+      dataset: staging_dev
+      location: europe-west1
+      threads: 4
+      timeout_seconds: 300
+      priority: interactive

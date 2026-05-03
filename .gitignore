@@ -223,7 +223,7 @@ credentials.json
 
 # Models (download via README instructions)
 *.gguf
-models/
+/models/
 
 # Local data (use GCS bronze instead)
 data/
