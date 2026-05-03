@@ -3,7 +3,9 @@ from datetime import date
 from io import BytesIO
 
 import pandas as pd
-from google.cloud import storage  # type: ignore[attr-defined]
+import pyarrow as pa
+import pyarrow.parquet as pq
+from google.cloud import storage
 from google.cloud.exceptions import GoogleCloudError
 
 from skillgap.parsing.schema import ParsedOffer
@@ -27,8 +29,26 @@ class GCSSilverStorage:
         # convert data to df via model_dump()
 
         df = pd.DataFrame([offer.model_dump() for offer in data])
+        # Schéma explicite pour éviter les types inférés cassés (ex: tech_stack
+        # devient list<null> quand toutes les listes sont vides dans le batch)
+        schema = pa.schema(
+            [
+                ("offer_id", pa.large_string()),
+                ("title", pa.large_string()),
+                ("created_at", pa.date32()),
+                ("scrape_date", pa.date32()),
+                ("location", pa.large_string()),
+                ("seniority", pa.large_string()),
+                ("contract_type", pa.large_string()),
+                ("rome_code", pa.large_string()),
+                ("tech_stack", pa.list_(pa.string())),
+                ("company_name", pa.large_string()),
+            ]
+        )
+        table = pa.Table.from_pandas(df, schema=schema, preserve_index=False)
+
         buffer = BytesIO()
-        df.to_parquet(buffer, engine="pyarrow", index=False)
+        pq.write_table(table, buffer)
         buffer.seek(0)
         try:
             blob.upload_from_file(buffer, content_type="application/octet-stream")

@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_offers
+    description: "Offres avec colonnes nettoyées (staging layer)"
+    columns:
+      - name: offer_id
+        description: "Identifiant unique de l'offre France Travail"
+        data_tests:
+          - not_null
+          - unique
+      - name: scrape_date
+        description: "Date de parsing"
+        data_tests:
+          - not_null
+      - name: tech_stack
+        description: "Liste des technologies extraites par LLM"

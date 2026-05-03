@@ -5,7 +5,6 @@ terraform {
       version = "~> 5.0"
     }
   }
-  # local backend for the moment, switching to gcp later
   backend "local" {}
 }
 
@@ -15,6 +14,20 @@ provider "google" {
   credentials = file("~/.gcp/skillgap-493211-191f7f049595.json")
 }
 
+resource "google_project_service" "cloud_resource_manager" {
+  project            = var.project_id
+  service            = "cloudresourcemanager.googleapis.com"
+  disable_on_destroy = false
+}
+
+resource "google_project_service" "service_usage" {
+  project            = var.project_id
+  service            = "serviceusage.googleapis.com"
+  disable_on_destroy = false
+}
+
 resource "google_project_service" "artifact_registry" {
-  service = "artifactregistry.googleapis.com"
+  project            = var.project_id
+  service            = "artifactregistry.googleapis.com"
+  disable_on_destroy = false
 }
