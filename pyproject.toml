@@ -85,3 +85,7 @@ packages = ["src/skillgap"]
 
 [tool.coverage.run]
 omit = ["src/skillgap/__main__.py"]
+
+[[tool.mypy.overrides]]
+module = ["pyarrow", "pyarrow.*"]
+ignore_missing_imports = true

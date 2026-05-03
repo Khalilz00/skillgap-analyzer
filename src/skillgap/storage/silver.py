@@ -5,7 +5,7 @@ from io import BytesIO
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
-from google.cloud import storage  # type: ignore[attr-defined]
+from google.cloud import storage
 from google.cloud.exceptions import GoogleCloudError
 
 from skillgap.parsing.schema import ParsedOffer
