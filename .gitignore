@@ -216,3 +216,17 @@ terraform.tfvars
 
 # Secrets
 credentials.json
+
+# GGUF files
+*.gguf
+
+# Models (download via README instructions)
+*.gguf
+models/
+
+# Local data (use GCS bronze instead)
+data/
+
+# Local test/scratch
+test_auth_manual.py
+src/skillgap/scratch/

@@ -15,17 +15,18 @@ class FranceTravailClient:
     def search_jobs(
         self,
         query: str,
+        grand_domaine: str | None = None,
         range_start: int = 0,
         range_end: int = 10,
         start_date: str | None = None,
         end_date: str | None = None,
     ) -> tuple[int, list[dict[str, Any]]]:
         headers = self._build_headers()
-        if not start_date and not end_date:
-            params: dict[str, str] = {
-                "range": f"{range_start}-{range_end}",
-                "motsCles": query,
-            }
+        params: dict[str, str] = {
+            "range": f"{range_start}-{range_end}",
+            "motsCles": query,
+            "grandDomaine": grand_domaine,
+        }
         if start_date is not None and end_date is not None:
             params["minCreationDate"] = start_date
             params["maxCreationDate"] = end_date

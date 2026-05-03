@@ -1,11 +1,11 @@
 import os
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from typing import Any
 
 from skillgap.config import BASE_URL, SCOPE, TOKEN_URL
 from skillgap.ingestion.auth import FranceTravailAuth
 from skillgap.ingestion.client import FranceTravailClient
-from skillgap.storage.gcs import GCSBronzeWriter
+from skillgap.storage.bronze import GCSBronzeStorage
 
 
 # function to fetch job offers from France Travail API, date range is optional,
@@ -13,18 +13,29 @@ from skillgap.storage.gcs import GCSBronzeWriter
 def fetch_job_offers(
     client: FranceTravailClient,
     query: str,
+    grand_domaine: str | None = None,
     start_date: str | None = None,
     end_date: str | None = None,
 ) -> list[dict[str, Any]]:
     total_objects, results = client.search_jobs(
-        query, 0, 149, start_date=start_date, end_date=end_date
+        query,
+        grand_domaine=grand_domaine,
+        range_start=0,
+        range_end=149,
+        start_date=start_date,
+        end_date=end_date,
     )
     total_calls = (total_objects + 149) // 150
     for i in range(1, total_calls):
         range_start = i * 150
         range_end = range_start + 149
         _, batch = client.search_jobs(
-            query, range_start, range_end, start_date=start_date, end_date=end_date
+            query,
+            grand_domaine=grand_domaine,
+            range_start=range_start,
+            range_end=range_end,
+            start_date=start_date,
+            end_date=end_date,
         )
         results.extend(batch)
     return results
@@ -52,21 +63,23 @@ def main() -> None:
     print(f"Ingestion mode: {ingestion_mode}")
 
     if ingestion_mode == "backfill":
-        results = fetch_job_offers(client, "data")
+        results = fetch_job_offers(client, "data", grand_domaine="M18")
     elif ingestion_mode == "incremental":
         # calcul des dates ici, juste quand on en a besoin
         today = datetime.now(UTC).strftime("%Y-%m-%d")
         yesterday = (datetime.now(UTC) - timedelta(days=1)).strftime("%Y-%m-%d")
         today_iso = f"{today}T00:00:00Z"
         yesterday_iso = f"{yesterday}T00:00:00Z"
-        results = fetch_job_offers(client, "data", start_date=yesterday_iso, end_date=today_iso)
+        results = fetch_job_offers(
+            client, "data", grand_domaine="M18", start_date=yesterday_iso, end_date=today_iso
+        )
     else:
         raise ValueError(
             f"Unknown INGESTION_MODE: {ingestion_mode}. Expected 'backfill' or 'incremental'."
         )
 
-    writer = GCSBronzeWriter(bucket_name)
-    writer.write(results, "france_travail")
+    writer = GCSBronzeStorage(bucket_name)
+    writer.write(results, "france_travail", date.today())
 
     print(f"Nombre d'offres récupérées : {len(results)}")
     print("Destination : france_travail")
