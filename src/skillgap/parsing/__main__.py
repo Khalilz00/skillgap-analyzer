@@ -17,6 +17,7 @@ silver = GCSSilverStorage(bucket_silver)
 
 # 2. Lire les offres depuis bronze
 offers = bronze.read("france_travail", date(2026, 4, 18))  # adapte la date
+# offers = offers[:10]
 
 # 3. Parser
 llm = LLMClient("/home/kzanzouri/skillgap-analyzer/models/qwen2.5-3b-instruct-q4_k_m.gguf")
